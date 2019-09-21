@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
   title = 'angular-perf';
+  posts$:Observable<any>;
   constructor(
     private http:HttpClient
   ) {
@@ -17,8 +19,6 @@ export class AppComponent implements OnInit {
     this.getAllPosts();
   }
   getAllPosts() {
-    this.http.get('api/posts').subscribe(res => {
-      console.log('service hit')
-    });
+    this.posts$ = this.http.get('api/posts')
   }
 }
