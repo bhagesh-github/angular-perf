@@ -14,6 +14,11 @@ export class AppComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.http.get('api/posts').subscribe();
+    this.getAllPosts();
+  }
+  getAllPosts() {
+    this.http.get('api/posts').subscribe(res => {
+      console.log('service hit')
+    });
   }
 }
